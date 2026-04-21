@@ -12,7 +12,7 @@
         }
 
         body {
-            background: linear-gradient(145deg, #1a472a 0%, #0a2a1a 100%);
+            background: linear-gradient(145deg, #1a0a2e 0%, #0d0118 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -24,22 +24,22 @@
         .troll-card {
             max-width: 700px;
             width: 100%;
-            background: #fff8ed;
-            background: linear-gradient(135deg, #fff7e8 0%, #fff0df 100%);
+            background: #f3eaff;
+            background: linear-gradient(135deg, #f0e6ff 0%, #e8d8ff 100%);
             border-radius: 72px;
-            box-shadow: 0 35px 55px rgba(0, 0, 0, 0.5), 0 10px 20px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255,255,200,0.8);
+            box-shadow: 0 35px 55px rgba(0, 0, 0, 0.6), 0 10px 20px rgba(100, 0, 200, 0.2), inset 0 1px 0 rgba(220,190,255,0.8);
             overflow: hidden;
             transition: all 0.2s ease;
         }
 
         .troll-header {
-            background: #ff8c42;
-            background: linear-gradient(115deg, #ff6b35, #ffb347, #ff3d6c);
+            background: #7b2ff7;
+            background: linear-gradient(115deg, #6a0dad, #b44ff7, #7b2ff7);
             background-size: 200% 200%;
             animation: gradientMove 5s ease infinite;
             padding: 1.5rem 1.8rem;
             text-align: center;
-            border-bottom: 5px solid #ffdd99;
+            border-bottom: 5px solid #d9a8ff;
         }
 
         @keyframes gradientMove {
@@ -51,8 +51,8 @@
         .troll-header h1 {
             font-size: 2rem;
             letter-spacing: -0.5px;
-            color: #2c1b0c;
-            text-shadow: 3px 3px 0 #ffc285;
+            color: #fff;
+            text-shadow: 3px 3px 0 #4a007a;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -61,11 +61,11 @@
         }
 
         .troll-header p {
-            background: #2d1f0e;
+            background: #2a0050;
             display: inline-block;
             padding: 6px 20px;
             border-radius: 60px;
-            color: #ffddb0;
+            color: #e0b8ff;
             font-weight: bold;
             font-size: 0.85rem;
             margin-top: 12px;
@@ -77,13 +77,13 @@
         }
 
         .input-area {
-            background: #fef3e4;
+            background: #e2d0f8;
             border-radius: 60px;
             padding: 8px 8px 8px 24px;
             display: flex;
             gap: 12px;
             align-items: center;
-            box-shadow: inset 0 1px 4px #cbad8a, 0 5px 12px rgba(0,0,0,0.1);
+            box-shadow: inset 0 1px 4px #b090d8, 0 5px 12px rgba(0,0,0,0.1);
             margin-bottom: 28px;
         }
 
@@ -95,18 +95,18 @@
             font-size: 1.1rem;
             font-weight: 500;
             outline: none;
-            color: #2a241e;
+            color: #1e0035;
             font-family: 'Noto Sans Malayalam', 'Segoe UI', sans-serif;
         }
 
         .input-area input::placeholder {
-            color: #b28b65;
+            color: #9060bb;
             font-style: italic;
             font-weight: normal;
         }
 
         .troll-send-btn {
-            background: #ff5e3a;
+            background: #7b2ff7;
             border: none;
             border-radius: 50px;
             padding: 12px 26px;
@@ -118,18 +118,18 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 4px 0 #942f14;
+            box-shadow: 0 4px 0 #4a007a;
             transform: translateY(-2px);
             font-family: inherit;
         }
 
         .troll-send-btn:active {
             transform: translateY(4px);
-            box-shadow: 0 1px 0 #942f14;
+            box-shadow: 0 1px 0 #4a007a;
         }
 
         .chat-preview {
-            background: #e7dcc8;
+            background: #cdb8e8;
             border-radius: 48px;
             padding: 1rem;
             margin-bottom: 1.5rem;
@@ -149,8 +149,8 @@
 
         .user-label {
             font-weight: 800;
-            background: #3b2a1f;
-            color: #ffddb0;
+            background: #2a0050;
+            color: #e0b8ff;
             padding: 4px 14px;
             border-radius: 40px;
             font-size: 0.75rem;
@@ -159,17 +159,17 @@
         .user-message {
             font-size: 1.1rem;
             font-weight: 500;
-            color: #2c241c;
+            color: #1e0035;
             word-break: break-word;
             flex: 1;
             font-family: 'Noto Sans Malayalam', monospace;
         }
 
         .reply-bubble {
-            background: #ffedd5;
+            background: #ecdeff;
             border-radius: 28px 28px 8px 28px;
             padding: 14px 20px;
-            border-left: 6px solid #ff6b3a;
+            border-left: 6px solid #7b2ff7;
             box-shadow: 0 3px 10px rgba(0,0,0,0.08);
             transition: all 0.2s ease;
         }
@@ -177,7 +177,7 @@
         .reply-label {
             font-size: 0.7rem;
             font-weight: bold;
-            color: #b45f2b;
+            color: #6a00cc;
             letter-spacing: 1px;
             margin-bottom: 8px;
             display: flex;
@@ -188,7 +188,7 @@
         .reply-text {
             font-size: 1.3rem;
             font-weight: 700;
-            color: #2b2b2b;
+            color: #1e0035;
             line-height: 1.4;
             word-break: break-word;
             display: flex;
@@ -209,18 +209,18 @@
             padding: 12px 18px;
             font-size: 0.8rem;
             text-align: center;
-            color: #7a5a3a;
+            color: #6a3a99;
             font-weight: 600;
             backdrop-filter: blur(4px);
         }
 
         footer {
-            background: #e6cfaa;
+            background: #d4b8f0;
             text-align: center;
             padding: 12px;
             font-size: 0.7rem;
             font-weight: bold;
-            color: #4e341c;
+            color: #2a0050;
         }
 
         @keyframes bounceReply {
@@ -330,7 +330,7 @@
             "എങ്ങനെ വായിക്കണം എന്ന് മറന്നു... വീണ്ടും ശ്രമിക്കേണ്ട",
             "🤷‍♂️ എന്തോ ശബ്ദം കേട്ടോ? ഞാനൊന്നും കേട്ടില്ല",
             "നീ അത് ചോദിച്ചിട്ടില്ലെന്ന് നടിക്കാം 😇",
-            "ഞാൻ ഉത്തരം തരുമായിരുന്നു… പക്ഷേ എന്റെ മടി > നിന്റെ കൗതുകം",
+            "ഞാൻ ഉത്തരം തരാമായിരുന്നു… പക്ഷേ എന്റെ മടി > നിന്റെ കൗതുകം",
             "എന്നെ വിളിക്കുമോ? ഇല്ല, വിളിക്കരുത് 📵",
             "നിന്റെ സന്ദേശം ട്രാഷിലേക്ക് അയച്ചു 📬🗑️",
             "ഞാൻ ഒരു സെർച്ച് എഞ്ചിൻ അല്ല മോനേ 💅",
@@ -477,7 +477,7 @@
 
             const userMsgClean = rawMsg.trim();
             let truncated = userMsgClean.length > 55 ? userMsgClean.slice(0, 52) + "..." : userMsgClean;
-            displayUserMsgSpan.innerHTML = `“${escapeHtml(truncated)}”`;
+            displayUserMsgSpan.innerHTML = `"${escapeHtml(truncated)}"`;
 
             let trollReply = generateMalayalamTroll(userMsgClean);
             
@@ -529,7 +529,7 @@
         setTimeout(() => {
             if (displayUserMsgSpan.innerHTML.includes("കാത്തിരിക്കുന്നു")) {
                 const demoMsg = "ഹായ്";
-                displayUserMsgSpan.innerHTML = `“${demoMsg}”`;
+                displayUserMsgSpan.innerHTML = `"${demoMsg}"`;
                 let demoReply = generateMalayalamTroll(demoMsg);
                 replyTextSpan.innerHTML = demoReply;
                 if(replyEmojiSpan) replyEmojiSpan.innerHTML = "🤡";
