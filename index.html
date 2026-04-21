@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>😂 ഫ്രണ്ട് റിപ്ലൈ ജനറേറ്റർ | മലയാളം ട്രോൾ ഫൺ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #1a472a 0%, #0a2a1a 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', 'Poppins', 'Noto Sans Malayalam', 'Comic Neue', system-ui, -apple-system, 'Inter', sans-serif;
+            padding: 1.5rem;
+        }
+
+        .troll-card {
+            max-width: 700px;
+            width: 100%;
+            background: #fff8ed;
+            background: linear-gradient(135deg, #fff7e8 0%, #fff0df 100%);
+            border-radius: 72px;
+            box-shadow: 0 35px 55px rgba(0, 0, 0, 0.5), 0 10px 20px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255,255,200,0.8);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .troll-header {
+            background: #ff8c42;
+            background: linear-gradient(115deg, #ff6b35, #ffb347, #ff3d6c);
+            background-size: 200% 200%;
+            animation: gradientMove 5s ease infinite;
+            padding: 1.5rem 1.8rem;
+            text-align: center;
+            border-bottom: 5px solid #ffdd99;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .troll-header h1 {
+            font-size: 2rem;
+            letter-spacing: -0.5px;
+            color: #2c1b0c;
+            text-shadow: 3px 3px 0 #ffc285;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .troll-header p {
+            background: #2d1f0e;
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 60px;
+            color: #ffddb0;
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            backdrop-filter: blur(2px);
+        }
+
+        .content {
+            padding: 2rem 2rem 1.8rem;
+        }
+
+        .input-area {
+            background: #fef3e4;
+            border-radius: 60px;
+            padding: 8px 8px 8px 24px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            box-shadow: inset 0 1px 4px #cbad8a, 0 5px 12px rgba(0,0,0,0.1);
+            margin-bottom: 28px;
+        }
+
+        .input-area input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 16px 0;
+            font-size: 1.1rem;
+            font-weight: 500;
+            outline: none;
+            color: #2a241e;
+            font-family: 'Noto Sans Malayalam', 'Segoe UI', sans-serif;
+        }
+
+        .input-area input::placeholder {
+            color: #b28b65;
+            font-style: italic;
+            font-weight: normal;
+        }
+
+        .troll-send-btn {
+            background: #ff5e3a;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 26px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 0 #942f14;
+            transform: translateY(-2px);
+            font-family: inherit;
+        }
+
+        .troll-send-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #942f14;
+        }
+
+        .chat-preview {
+            background: #e7dcc8;
+            border-radius: 48px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .user-bubble {
+            background: #ffffff;
+            border-radius: 28px 28px 28px 8px;
+            padding: 12px 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .user-label {
+            font-weight: 800;
+            background: #3b2a1f;
+            color: #ffddb0;
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+        }
+
+        .user-message {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #2c241c;
+            word-break: break-word;
+            flex: 1;
+            font-family: 'Noto Sans Malayalam', monospace;
+        }
+
+        .reply-bubble {
+            background: #ffedd5;
+            border-radius: 28px 28px 8px 28px;
+            padding: 14px 20px;
+            border-left: 6px solid #ff6b3a;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: all 0.2s ease;
+        }
+
+        .reply-label {
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: #b45f2b;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .reply-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2b2b2b;
+            line-height: 1.4;
+            word-break: break-word;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            font-family: 'Noto Sans Malayalam', sans-serif;
+        }
+
+        .reply-emoji {
+            font-size: 1.9rem;
+        }
+
+        .random-fact {
+            margin-top: 24px;
+            background: #00000022;
+            border-radius: 48px;
+            padding: 12px 18px;
+            font-size: 0.8rem;
+            text-align: center;
+            color: #7a5a3a;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+        }
+
+        footer {
+            background: #e6cfaa;
+            text-align: center;
+            padding: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: #4e341c;
+        }
+
+        @keyframes bounceReply {
+            0% { transform: scale(0.96); opacity: 0; }
+            80% { transform: scale(1.02); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .reply-bubble {
+            animation: bounceReply 0.35s ease-out;
+        }
+
+        .shake {
+            animation: shakeEffect 0.4s ease-in-out 0s 1;
+        }
+
+        @keyframes shakeEffect {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+            100% { transform: translateX(0); }
+        }
+
+        @media (max-width: 550px) {
+            .content {
+                padding: 1.5rem;
+            }
+            .reply-text {
+                font-size: 1.1rem;
+            }
+            .troll-header h1 {
+                font-size: 1.5rem;
+            }
+            .input-area {
+                padding-left: 16px;
+            }
+            .troll-send-btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="troll-card" id="appContainer">
+    <div class="troll-header">
+        <h1>
+            😈 ഫ്രണ്ട് റിപ്ലൈ ജനറേറ്റർ 🤡
+            <span>⚡ മലയാളി ട്രോൾ മോഡ്</span>
+        </h1>
+        <p>💬 എന്തെങ്കിലും പറയു → കിടിലൻ ട്രോൾ മറുപടി 💬</p>
+    </div>
+
+    <div class="content">
+        <div class="input-area">
+            <input type="text" id="messageInput" placeholder="എഴുതുക... 'ഹായ്', 'ഫ്രീ ആണോ?', 'ഊണായോ?' 😏" autocomplete="off">
+            <button class="troll-send-btn" id="sendBtn">
+                🤖 അയക്കു 🤣
+            </button>
+        </div>
+
+        <div class="chat-preview" id="chatPreviewArea">
+            <div class="user-bubble">
+                <span class="user-label">നീ 🧑‍🎤</span>
+                <span class="user-message" id="displayUserMsg">🤔 നിന്റെ സന്ദേശത്തിനായി കാത്തിരിക്കുന്നു...</span>
+            </div>
+            <div class="reply-bubble" id="replyBubble">
+                <div class="reply-label">
+                    <span>🤡 ട്രോൾ ഫ്രണ്ട് മറുപടി</span> 
+                    <span class="tooltip-icon" title="100% കള്ളം, സത്യസന്ധത ഇല്ല">ⓘ</span>
+                </div>
+                <div class="reply-text" id="replyMessage">
+                    <span class="reply-emoji">💀</span> 
+                    <span id="replyTextSpan">എന്തെങ്കിലും ടൈപ്പ് ചെയ്ത് 'അയക്കു' അമർത്തുക!</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="random-fact" id="randomFooterMsg">
+            💡 ടിപ്പ്: 'ഹായ്', 'സഹായിക്കുമോ?', 'ബിസിയാണോ?' പോലുള്ള കുസൃതി ചോദ്യങ്ങൾ ട്രൈ ചെയ്യു 😂
+        </div>
+    </div>
+    <footer>
+        🧠 100% ഉപയോഗശൂന്യമായ മറുപടികൾ | സഹതാപം പൂജ്യം | യഥാർത്ഥ കൂട്ടുകാരന്റെ ട്രോൾ സിമുലേറ്റർ
+    </footer>
+</div>
+
+<script>
+    (function() {
+    
+        const malayalamTrolls = [
+            "അതേ… എന്റെ സ്വപ്നത്തിൽ മാത്രം 😌",
+            "ഞാൻ ലാസിയായി ഇരിക്കുവാ 😴 ബിസി അല്ല",
+            "ചോദിച്ചത് നല്ലതാണ്… പക്ഷേ ഉത്തരം തരുന്നില്ല 😎",
+            "Google ചോദിച്ചോ? അവൻ പറഞ്ഞു തരും 🤖",
+            "10 കൊല്ലം കഴിഞ്ഞ് വീണ്ടും ചോദിക്ക് ⏳",
+            "പ്രോസസ്സ് ചെയ്യുന്നു… ഇപ്പോഴും… പൂർത്തിയാകുന്നില്ല ⚡",
+            "Error 404: താല്പര്യം കണ്ടെത്തിയില്ല 💀",
+            "ഞാൻ ആ സന്ദേശം കണ്ടില്ലെന്ന് നടിക്കാം 🙈",
+            "എന്റെ വൈഫൈ ദയ കാണിക്കുമ്പോൾ മറുപടി തരാം 🐌",
+            "എന്റെ ബ്രെയിൻ നിരസിച്ചു ❌",
+            "ഞാൻ എയർപ്ലെയ്ൻ മോഡിൽ ആണ് ✈️ (മാനസികമായി)",
+            "വായിച്ചു പക്ഷേ അവഗണിക്കാൻ തീരുമാനിച്ചു 🔪",
+            "ഇന്ന് വേണ്ട, സാറ്റാൻ 😈",
+            "എനിക്ക് 99 പ്രശ്നങ്ങൾ ഉണ്ട്, നിന്റെ മെസ്സേജും ഒന്ന് 🎵",
+            "എങ്ങനെ വായിക്കണം എന്ന് മറന്നു... വീണ്ടും ശ്രമിക്കേണ്ട",
+            "🤷‍♂️ എന്തോ ശബ്ദം കേട്ടോ? ഞാനൊന്നും കേട്ടില്ല",
+            "നീ അത് ചോദിച്ചിട്ടില്ലെന്ന് നടിക്കാം 😇",
+            "ഞാൻ ഉത്തരം തരുമായിരുന്നു… പക്ഷേ എന്റെ മടി > നിന്റെ കൗതുകം",
+            "എന്നെ വിളിക്കുമോ? ഇല്ല, വിളിക്കരുത് 📵",
+            "നിന്റെ സന്ദേശം ട്രാഷിലേക്ക് അയച്ചു 📬🗑️",
+            "ഞാൻ ഒരു സെർച്ച് എഞ്ചിൻ അല്ല മോനേ 💅",
+            "ക്ഷമിക്കണം, ഞാൻ ഇന്ന് ആളെ അവഗണിക്കുന്ന തിരക്കിലാണ് 🧘",
+            "എന്റെ ഷെഡ്യൂൾ പരിശോധിക്കട്ടെ... ഓ എനിക്ക് കാര്യമില്ല",
+            "Error: സഹതാപം മൊഡ്യൂൾ ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല 🤖❌",
+            "എനിക്ക് മറുപടി തരാമായിരുന്നു, പക്ഷേ അതിലെ രസമെന്താ? 😏",
+            "ഈ സംഭാഷണം മെയിന്റനൻസിലാണ് 🚧",
+            "ഞാൻ എന്റെ ✨വില്ലൻ വേഷത്തിലാണ്✨, മറുപടി ഇല്ല",
+            "ദയവായി ഹോൾഡ് ചെയ്യുക... എന്നെന്നേക്കുമായി 📞",
+            "എനിക്ക് മറുപടി തരാമായിരുന്നു പക്ഷേ ഒരു മതിൽ കണ്ട് ശ്രദ്ധ തെറ്റി",
+            "നമുക്ക് സത്യസന്ധരാകാം, ഞാൻ ഒരിക്കലും സഹായിക്കാൻ പോകുന്നില്ലായിരുന്നു 😂"
+        ];
+
+        function getMalayalamContextReply(msgLower) {
+            if (msgLower.includes("ഹായ്") || msgLower === "ഹായ്" || msgLower.includes("ഹലോ") || msgLower.includes("ഹെയ്") || msgLower.includes("hi") || msgLower === "hi" || msgLower.includes("hello")) {
+                const hiMal = [
+                    "ഹായ്? പോയി പണിയെടുക്ക് 👋",
+                    "ഹലോ എന്ന് പറഞ്ഞു, ഇപ്പോ അപ്രത്യക്ഷനാകൂ 👻",
+                    "ഹായ് സെൽഫ്. അടുത്ത ചോദ്യം?",
+                    "ഓഹോ അഭിവാദ്യം പഠിച്ചോ? അഭിനന്ദനങ്ങൾ 🎉",
+                    "ഹേയ്... (വായിച്ചിട്ട് ഇഗ്നോർ ചെയ്തു)",
+                    "ഹായ്? എന്റെ ബാറ്ററി 2% ഉം എനിക്ക് കാര്യവുമില്ല ⚡"
+                ];
+                return hiMal[Math.floor(Math.random() * hiMal.length)];
+            }
+            if (msgLower.includes("ഫ്രീ") || msgLower.includes("free") || msgLower.includes("ബിസി") || msgLower.includes("busy") || msgLower.includes("സമയമുണ്ടോ")) {
+                const freeMal = [
+                    "ഫ്രീയോ? ഞാൻ മാനസികമായി അൺഅവയിലബിൾ 💔",
+                    "ഫ്രീ ആണ്... ഇതൊന്നും കെയർ ചെയ്യാതിരിക്കാൻ 😂",
+                    "ഐക്കോണിക്ക് ആകുന്ന തിരക്കിലാണ്, സോറി 💅",
+                    "നിന്നെ ഇഗ്നോർ ചെയ്യാൻ ഞാൻ എപ്പോഴും ഫ്രീ ആണ് 🏆",
+                    "ഞാൻ പരിശോധിക്കട്ടെ... ഇല്ല, നിന്റെ നാടകത്തിന് ഫ്രീ അല്ല"
+                ];
+                return freeMal[Math.floor(Math.random() * freeMal.length)];
+            }
+            if (msgLower.includes("ഊണായോ") || msgLower.includes("ഊണു") || msgLower.includes("ഫുഡ്") || msgLower.includes("കഴിച്ചോ") || msgLower.includes("eat") || msgLower.includes("ഭക്ഷണം")) {
+                const foodMal = [
+                    "ഊണായോ? അത് രഹസ്യ വിവരം 🤫",
+                    "നിന്റെ സ്വപ്നങ്ങളും പ്രതീക്ഷകളും ഞാൻ പ്രഭാതഭക്ഷണമാക്കി 🍳",
+                    "ഫുഡോ? ഞാൻ ശ്രദ്ധ വിഴുങ്ങും 😎",
+                    "ഞാൻ പിക്സലുകൾ ഉച്ചഭക്ഷണമായി കഴിച്ചു, നന്ദി",
+                    "ഭക്ഷണം ഓവർറേറ്റഡ് ആണ്, നിന്റെ ചോദ്യം പോലെ"
+                ];
+                return foodMal[Math.floor(Math.random() * foodMal.length)];
+            }
+            if (msgLower.includes("സഹായിക്കുമോ") || msgLower.includes("help") || msgLower.includes("പ്ലീസ്") || msgLower.includes("സഹായം")) {
+                const helpMal = [
+                    "സഹായിക്കുമോ? ഞാൻ ഹെൽപ് ലൈൻ അല്ല, ട്രോൾ ലൈൻ ആണ് 😂",
+                    "സഹായിക്കാം... നിന്നെ കൂടുതൽ നിരാശനാക്കാൻ 😌",
+                    "Error: 'help' കമാൻഡ് തിരിച്ചറിഞ്ഞില്ല. 'suffer' ട്രൈ ചെയ്യുക",
+                    "പ്ലീസ്? വളരെ ദയവായിട്ടും ഇല്ല 🙃",
+                    "ഞാൻ സഹായിക്കുമായിരുന്നു, പക്ഷേ എന്റെ കരാറിൽ 'ദയ കാണിക്കരുത്' എന്നുണ്ട് 📄"
+                ];
+                return helpMal[Math.floor(Math.random() * helpMal.length)];
+            }
+            if (msgLower.includes("പ്രേമം") || msgLower.includes("ഇഷ്ടം") || msgLower.includes("love") || msgLower.includes("crush")) {
+                const loveMal = [
+                    "പ്രേമമോ? ഞാൻ ആളെ സഹിക്കുന്നില്ല 😂",
+                    "എന്റെ ഏക പ്രേമം ഉറങ്ങലും മെസ്സേജ് അവഗണിക്കലുമാണ് 💘",
+                    "റൊമാൻസോ? ഞാൻ പെയിന്റ് ഉണങ്ങുന്നത് കാണും 🎨",
+                    "സോറി, എന്റെ ഹൃദയം ആക്ഷേപഹാസ്യത്തിന് വേണ്ടി റിസർവ് ചെയ്തതാണ് 💀"
+                ];
+                return loveMal[Math.floor(Math.random() * loveMal.length)];
+            }
+            if (msgLower.includes("ജോലി") || msgLower.includes("പഠിപ്പ്") || msgLower.includes("work") || msgLower.includes("study")) {
+                const workMal = [
+                    "ജോലിയോ? ഞാൻ ഒന്നും ചെയ്യാതിരിക്കുന്ന തിരക്കിലാണ് 😎",
+                    "നിന്റെ ജോലിയോട് 'ഗുഡ് ലക്ക്' പറയ്",
+                    "പഠിപ്പിക്കുക? ഞാൻ പ്രോ-പ്രൊക്രാസ്റ്റിനേഷൻ വിദഗ്ധൻ 💪",
+                    "ജോലി താൽക്കാലികം, ട്രോളിംഗ് ശാശ്വതം 🤡"
+                ];
+                return workMal[Math.floor(Math.random() * workMal.length)];
+            }
+            if (msgLower.length < 4) {
+                const shortMal = [
+                    "ഇത്രേ ഉള്ളൂ? എനിക്ക് കൂടുതൽ നോൺസെൻസ് വേണം അവഗണിക്കാൻ 🥱",
+                    "ഒറ്റ വാക്ക് എനർജി? ഇതാ എന്റെ പൂജ്യം വാക്ക് മറുപടി: *ചീവീട്* 🦗",
+                    "ചെറിയ മെസ്സേജ് = ചെറിയ താൽപര്യം 🔥",
+                    "ആഴമുള്ള സംഭാഷണം, കുളമ്പുവെള്ളം പോലെ. അടുത്തത്!"
+                ];
+                return shortMal[Math.floor(Math.random() * shortMal.length)];
+            }
+            return null;
+        }
+
+        function generateMalayalamTroll(userMsg) {
+            if (!userMsg || userMsg.trim() === "") {
+                return "എന്തെങ്കിലും പറയൂ! പിശാചുകൾ പോലും 'ബൂ' എന്ന് പറയും 👻";
+            }
+            const lowerMsg = userMsg.toLowerCase();
+            const contextReply = getMalayalamContextReply(lowerMsg);
+            if (contextReply) return contextReply;
+            const randomIndex = Math.floor(Math.random() * malayalamTrolls.length);
+            return malayalamTrolls[randomIndex];
+        }
+
+        const inputField = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendBtn');
+        const displayUserMsgSpan = document.getElementById('displayUserMsg');
+        const replyTextSpan = document.getElementById('replyTextSpan');
+        const replyEmojiSpan = document.querySelector('#replyMessage .reply-emoji');
+        const replyBubbleDiv = document.getElementById('replyBubble');
+        const randomFooterSpan = document.getElementById('randomFooterMsg');
+
+        const malayalamFooterTips = [
+            "💡 'ഫ്രീ ആണോ?' എന്ന് ചോദിച്ചു നോക്കു → മറുപടി കരയിപ്പിക്കും 🤪",
+            "🔥 ഫണ് ഫാക്ട്: ഈ ആപ്പിന് 0% ഉപകാരം, 100% ട്രോൾ",
+            "📢 ചലഞ്ച്: 'എനിക്ക് സഹായം വേണം' എന്ന് ടൈപ്പ് ചെയ്യു → കരച്ചിൽ ഉറപ്പ് 😂",
+            "🤖 പവർ ചെയ്തത് 'ആർട്ടിഫിഷ്യൽ സ്റ്റുപ്പിഡിറ്റി' എഞ്ചിൻ",
+            "⭐ 'ഏറ്റവും മോശം ഫ്രണ്ട്' എന്ന അവാർഡിന് 5 സ്റ്റാർ ⭐",
+            "💀 മുന്നറിയിപ്പ്: മറുപടികൾ ചിരിയും വിഷാദവും ഉണ്ടാക്കാം",
+            "😈 'ഹായ്' പറഞ്ഞാൽ നേരെ റോസ്റ്റ് 🍗"
+        ];
+
+        function updateRandomFooter() {
+            const rand = Math.floor(Math.random() * malayalamFooterTips.length);
+            randomFooterSpan.innerHTML = malayalamFooterTips[rand];
+        }
+
+        setInterval(updateRandomFooter, 9000);
+
+        function escapeHtml(str) {
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        function processMessage() {
+            let rawMsg = inputField.value;
+            if (rawMsg.trim() === "") {
+                const emptyReply = "😼 ഹേയ്! എന്തെങ്കിലും ടൈപ്പ് ചെയ്യ്, വോയിഡിനെ ട്രോൾ ചെയ്യാൻ വയ്യ!";
+                displayUserMsgSpan.innerHTML = "⚠️ [ശൂന്യമായ സന്ദേശം] ⚠️";
+                replyTextSpan.innerHTML = emptyReply;
+                if(replyEmojiSpan) replyEmojiSpan.innerHTML = "😾";
+                const inputDiv = document.querySelector('.input-area');
+                inputDiv.classList.add('shake');
+                setTimeout(() => inputDiv.classList.remove('shake'), 400);
+                return;
+            }
+
+            const userMsgClean = rawMsg.trim();
+            let truncated = userMsgClean.length > 55 ? userMsgClean.slice(0, 52) + "..." : userMsgClean;
+            displayUserMsgSpan.innerHTML = `“${escapeHtml(truncated)}”`;
+
+            let trollReply = generateMalayalamTroll(userMsgClean);
+            
+            const extraEmojis = ["😂", "🤣", "💀", "😈", "🤡", "👻", "🥴", "🤪"];
+            if (Math.random() > 0.65) {
+                let randEmoji = extraEmojis[Math.floor(Math.random() * extraEmojis.length)];
+                if (!trollReply.includes(randEmoji)) {
+                    trollReply = trollReply + " " + randEmoji;
+                }
+            }
+
+            let chosenEmoji = "🤖";
+            if (trollReply.includes("സ്വപ്ന") || trollReply.includes("ലാസി")) chosenEmoji = "😴";
+            else if (trollReply.includes("404") || trollReply.includes("Error")) chosenEmoji = "💀";
+            else if (trollReply.includes("Google")) chosenEmoji = "🔍";
+            else if (trollReply.includes("10 കൊല്ലം")) chosenEmoji = "⏳";
+            else if (trollReply.includes("പ്രോസസ്സ്")) chosenEmoji = "⚡";
+            else if (trollReply.includes("അവഗണിക്ക")) chosenEmoji = "🙈";
+            else chosenEmoji = extraEmojis[Math.floor(Math.random() * extraEmojis.length)];
+            
+            if(replyEmojiSpan) replyEmojiSpan.innerHTML = chosenEmoji;
+            replyTextSpan.innerHTML = trollReply;
+            
+            replyBubbleDiv.style.animation = 'none';
+            replyBubbleDiv.offsetHeight;
+            replyBubbleDiv.style.animation = 'bounceReply 0.4s ease-out';
+            
+            sendButton.classList.add('shake');
+            setTimeout(() => sendButton.classList.remove('shake'), 300);
+            
+            inputField.value = "";
+            inputField.focus();
+        }
+
+        sendButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            processMessage();
+        });
+
+        inputField.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                processMessage();
+            }
+        });
+
+        updateRandomFooter();
+        
+        setTimeout(() => {
+            if (displayUserMsgSpan.innerHTML.includes("കാത്തിരിക്കുന്നു")) {
+                const demoMsg = "ഹായ്";
+                displayUserMsgSpan.innerHTML = `“${demoMsg}”`;
+                let demoReply = generateMalayalamTroll(demoMsg);
+                replyTextSpan.innerHTML = demoReply;
+                if(replyEmojiSpan) replyEmojiSpan.innerHTML = "🤡";
+            }
+        }, 800);
+    })();
+</script>
+</body>
+</html>
